@@ -4,7 +4,7 @@
 #循环取出ip和密码
 for i in $(cat ./hosts )
 do
-	
+	#取出ip和密码
 	IP=$(echo "${i}" |awk -F":" '{print $1}')
 	PW=$(echo "${i}" |awk -F":" '{print $2}')
 	./sshcopy.exp $IP  $PW
