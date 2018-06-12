@@ -7,13 +7,18 @@ do
 	#取出ip和密码
 	IP=$(echo "${i}" |awk -F":" '{print $1}')
 	PW=$(echo "${i}" |awk -F":" '{print $2}')
+	#将本地的公钥复制到远程主机
 	./sshcopy.exp $IP  $PW
+	#将脚本sshkeygen.exp复制到远程主机
 	scp -p ./sshkeygen.exp   $IP:/root/
-	#./ssh2.exp $IP
+	#远程主机安装expect
 	ssh root@$IP "yum install expect -y "
+	#远程主机创建密钥文件
 	ssh root@$IP "/root/sshkeygen.exp&"
+	#将远程主机的公钥添加到本地authorized_keys文件
 	ssh root@$IP "cat ~/.ssh/*.pub" >>./authorized_keys
 done
+#将本地的公钥复制到远程主机
 for i in $(cat ./hosts)
 do
 	 IP=$(echo "${i}" |awk -F":" '{print $1}')

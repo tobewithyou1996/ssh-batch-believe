@@ -1,9 +1,10 @@
-#!/usr/bin/expect -d 
+#!/usr/bin/expect -d  
 set ip [lindex $argv 0]
 set pw [lindex $argv 1]
 set timeout 60
 spawn ssh-copy-id $ip
 expect {
+#"*yes/no" {send "yes\r"; exp_continue} #如果这行注释了，我们需要在/etc/ssh/ssh_config 将# StrictHostKeyChecking ask 修改为 StrictHostKeyChecking no。
 "password:" {send "$pw\r"}
 }
 expect eof
