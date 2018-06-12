@@ -1,4 +1,5 @@
 #!/bin/bash
+#检查本地是否有密钥文件，没有则添加。
 ./sshkeygen.exp
 for i in $(cat ./hosts )
 do
