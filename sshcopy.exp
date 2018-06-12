@@ -1,0 +1,9 @@
+#!/usr/bin/expect -d 
+set ip [lindex $argv 0]
+set pw [lindex $argv 1]
+set timeout 60
+spawn ssh-copy-id $ip
+expect {
+"password:" {send "$pw\r"}
+}
+expect eof

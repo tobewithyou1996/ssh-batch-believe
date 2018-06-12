@@ -1,0 +1,10 @@
+#!/usr/bin/expect -d
+set timeout 90
+spawn ssh-keygen
+expect {
+".ssh/id_rsa" {send "\r";exp_continue}
+"Overwrite (y/n)?" exit
+"Enter passphrase" {send "\r";exp_continue}
+"Enter same passphrase again:" {send "\r"}
+}
+expect eof
