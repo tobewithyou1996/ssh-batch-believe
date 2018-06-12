@@ -1,3 +1,4 @@
+#!/bin/bash
 ./sshkeygen.exp
 for i in $(cat ./hosts )
 do
