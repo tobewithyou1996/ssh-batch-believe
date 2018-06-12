@@ -1,6 +1,7 @@
 #!/bin/bash
 #检查本地是否有密钥文件，没有则添加。
 ./sshkeygen.exp
+#循环取出ip和密码
 for i in $(cat ./hosts )
 do
 	
