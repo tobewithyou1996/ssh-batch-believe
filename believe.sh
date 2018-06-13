@@ -22,5 +22,7 @@ done
 for i in $(cat ./hosts)
 do
 	 IP=$(echo "${i}" |awk -F":" '{print $1}')
+	 #将本地主机的公钥文件添加到authorized_keys文件
+	 cat ~/.ssh/*.pub >>./authorized_keys
 	 scp ./authorized_keys $IP:~/.ssh/authorized_keys
 done 
